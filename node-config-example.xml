@@ -1,0 +1,25 @@
+<?xml version='1.1' encoding='UTF-8'?>
+<!--
+  Example Jenkins agent (node) configuration.
+  This is a reference file showing the structure Jenkins generates
+  when you create a Permanent Agent via Manage Jenkins > Nodes and Clouds.
+  Replace placeholder values with your actual environment details.
+-->
+<slave>
+  <name>agent-linux-x86</name>
+  <description>Remote build agent - x86 architecture</description>
+  <remoteFS>/home/jenkins-agent/workspace</remoteFS>
+  <numExecutors>1</numExecutors>
+  <mode>EXCLUSIVE</mode>
+  <label>linux-x86 build-node</label>
+  <launcher class="hudson.plugins.sshslaves.SSHLauncher">
+    <host>REPLACE_WITH_AGENT_IP</host>
+    <port>22</port>
+    <credentialsId>REPLACE_WITH_CREDENTIAL_ID</credentialsId>
+    <launchTimeoutSeconds>60</launchTimeoutSeconds>
+    <maxNumRetries>3</maxNumRetries>
+    <retryWaitTime>15</retryWaitTime>
+  </launcher>
+  <retentionStrategy class="hudson.slaves.RetentionStrategy$Always"/>
+  <nodeProperties/>
+</slave>
